@@ -1,0 +1,45 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: backend-watch
+    # In dev, you might override CMD with a dev script or nodemon,
+    # but we'll rely on Compose Watch to sync changes.
+    ports:
+      - '3001:3001'
+    environment:
+      - NODE_ENV=development
+    # The new "develop" block with "watch" rules:
+    develop:
+      watch:
+        # 1) Sync all changes from ./backend EXCEPT node_modules
+        - action: sync
+          path: ./backend
+          target: /usr/src/app
+          ignore:
+            - node_modules/
+            - '*.log'
+        # 2) If package.json changes, do a full rebuild & replace container
+        - action: rebuild
+          path: ./backend/package.json
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend-watch
+    ports:
+      - '5173:5173'
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true # Ensure file changes are detected
+    develop:
+      watch:
+        - action: sync
+          path: ./frontend
+          target: /usr/src/app
+          ignore:
+            - node_modules/
+        - action: rebuild
+          path: ./frontend/package.json
