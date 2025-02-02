@@ -1,11 +1,24 @@
-const express = require('express');
-const app = express();
-const PORT = process.env.PORT || 3001;
+import app from './app.js';
+import config from './config/environment.js';
 
-app.get('/api', (req, res) => {
-  res.json({ message: 'Hello from the backend!' });
+// Handle uncaught exceptions
+process.on('uncaughtException', (err) => {
+  console.error('UNCAUGHT EXCEPTION! 💥 Shutting down...');
+  console.error(err.name, err.message);
+  process.exit(1);
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+const server = app.listen(config.port, () => {
+  console.log(
+    `Server running in ${config.nodeEnv} mode on port ${config.port}`
+  );
+});
+
+// Handle unhandled promise rejections
+process.on('unhandledRejection', (err) => {
+  console.error('UNHANDLED REJECTION! 💥 Shutting down...');
+  console.error(err.name, err.message);
+  server.close(() => {
+    process.exit(1);
+  });
 });
