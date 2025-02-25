@@ -1,0 +1,92 @@
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background);
+    margin-top: 2rem;
+}
+
+.register-container .register-box-icon {
+    width: 42rem;
+    margin-right: 4rem;
+    border-radius: 1.5rem;
+    box-shadow: 1rem 1rem 1rem rgba(0, 0, 0, 0.5);
+}
+
+.register-container .register-box-icon img {
+    border-radius: 1.5rem;
+}
+
+.register-container .register-box {
+    background-color: var(--primary);
+    color: var(--text);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 1rem 1rem 1rem rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    min-height: 42rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.register-container h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+}
+
+.register-container .input-group {
+    margin-bottom: 1.2rem;
+    text-align: left;
+}
+
+.register-container label {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+}
+
+.register-container input {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    color: black;
+}
+
+.register-container .register-btn {
+    background-color: var(--secondary);
+    color: var(--text);
+    padding: 0.75rem;
+    width: 100%;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.register-container .register-btn:hover {
+    background-color: var(--accent);
+}
+
+/* Register link styling */
+.register-container .register-link {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.register-container .register-link a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.register-container .register-link a:hover {
+    text-decoration: underline;
+}

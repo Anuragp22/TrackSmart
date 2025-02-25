@@ -1,0 +1,117 @@
+.navbar {
+    background-color: var(--primary);
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    box-shadow: 1rem 1rem 1rem rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    /* Centers it */
+    width: 95%;
+    z-index: 1000;
+    border-radius: 1.5rem;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    /* For Safari support */
+}
+
+.navbar .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar .logo img {
+    width: 3rem;
+    height: 3rem;
+    margin-right: 1rem;
+}
+
+.navbar .logo h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar .nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.navbar .nav-item {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.navbar .nav-item:hover {
+    color: var(--accent);
+}
+
+.navbar .login-btn {
+    background-color: var(--secondary);
+    color: var(--text);
+    padding: 0.5rem 1.2rem;
+    border-radius: 1rem;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.navbar .login-btn:hover {
+    background-color: var(--accent);
+}
+
+.navbar .menu-toggle {
+    display: none;
+    font-size: 1.8rem;
+    background: none;
+    border: none;
+    color: var(--text);
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .navbar .menu-toggle {
+        display: block;
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+    }
+
+    .navbar .nav-links {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: var(--primary);
+        flex-direction: column;
+        text-align: center;
+        display: none;
+        z-index: 9;
+    }
+
+    .navbar .nav-links.open {
+        display: flex;
+    }
+
+    .navbar .nav-links li {
+        padding: 1rem;
+        border-bottom: 1px solid var(--hover-bg);
+    }
+
+    .navbar .login-btn {
+        position: absolute;
+        right: 4rem;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
