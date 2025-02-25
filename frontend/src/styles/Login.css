@@ -37,6 +37,10 @@
     font-size: 1.8rem;
 }
 
+.logged-in p {
+    margin-bottom: 2rem;
+}
+
 .login-container .input-group {
     margin-bottom: 1.2rem;
     text-align: left;

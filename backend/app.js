@@ -3,15 +3,13 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import mongoSanitize from 'express-mongo-sanitize';
-// import passport from 'passport';
-import config from './config/environment.js';
+import dotenv from 'dotenv';
 import connectDB from './config/database.js';
 import authRoutes from './routes/auth.routes.js';
 import { errorHandler } from './middleware/error.middleware.js';
 
 const app = express();
-
-// Connect to MongoDB
+dotenv.config();
 connectDB();
 
 // Middleware
@@ -19,12 +17,15 @@ app.use(helmet());
 app.use(mongoSanitize());
 app.use(
   cors({
-    origin: config.frontendUrl,
+    origin: process.env.FRONTEND_URL,
     credentials: true,
   })
 );
 app.use(express.json({ limit: '10kb' }));
-// app.use(passport.initialize());
+
+app.get('/test', (req, res) => {
+  res.json({ message: "Test route is working" });
+});
 
 // Mount Authentication Routes
 app.use('/api/auth', authRoutes);
