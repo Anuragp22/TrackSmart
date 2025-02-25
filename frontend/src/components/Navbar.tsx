@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import "../styles/Navbar.css";
 import logo_icon from "/images/logo_icon.png";
 
 function Navbar() {
     const { isLoggedIn } = useAuth();
+    const [isOpen, setIsOpen] = useState(false);
 
     return (
         <nav className="navbar">
@@ -13,14 +15,18 @@ function Navbar() {
                 <h2>TrackSmart</h2>
             </div>
 
-            <ul className="nav-links">
-                <li><Link to="/" className="nav-item">Dashboard</Link></li>
-                <li><Link to="/expenses" className="nav-item">Expenses</Link></li>
-                <li><Link to="/analytics" className="nav-item">Analytics</Link></li>
-                <li><Link to="/settings" className="nav-item">Settings</Link></li>
+            <ul className={`nav-links ${isOpen ? "open" : ""}`}>
+                <li><Link to="/" className="nav-item" onClick={() => setIsOpen(false)}>Dashboard</Link></li>
+                <li><Link to="/expenses" className="nav-item" onClick={() => setIsOpen(false)}>Expenses</Link></li>
+                <li><Link to="/analytics" className="nav-item" onClick={() => setIsOpen(false)}>Analytics</Link></li>
+                <li><Link to="/settings" className="nav-item" onClick={() => setIsOpen(false)}>Settings</Link></li>
             </ul>
 
             <Link to="/login" className="login-btn">{isLoggedIn ? "Profile" : "Login"}</Link>
+
+            <button className="menu-toggle" onClick={() => setIsOpen(!isOpen)}>
+                ☰
+            </button>
         </nav>
     );
 }
