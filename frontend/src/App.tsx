@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar.tsx";
 import Register from "./pages/Register.tsx";
 import { AuthProvider } from "./context/AuthContext.tsx";
 import "./styles/App.css";
+import Footer from "./components/Footer.tsx";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <Footer />
       </AuthProvider>
     </div>
   );
